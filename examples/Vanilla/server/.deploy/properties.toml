@@ -1,0 +1,5 @@
+[[deployer]]
+name     = "Properties"
+filename = "server.properties"
+method   = "install"
+userdata = { origin = "server.properties" }

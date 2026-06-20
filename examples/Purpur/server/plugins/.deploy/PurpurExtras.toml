@@ -1,0 +1,5 @@
+[[deployer]]
+name     = "PurpurExtras"
+filename = "PurpurExtras.jar"
+method   = "modrinth"
+userdata = { versionid = "VfuqkKDQ", versionfile = "PurpurExtras-1.37.0.jar" }

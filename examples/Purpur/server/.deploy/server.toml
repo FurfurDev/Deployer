@@ -1,0 +1,5 @@
+[[deployer]]
+name     = "Server"
+filename = "server.jar"
+method   = "web"
+userdata = { url = "https://api.purpurmc.org/v2/purpur/1.21.1/2329/download" }

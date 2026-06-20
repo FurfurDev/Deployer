@@ -1,0 +1,5 @@
+[[deployer]]
+name     = "ProtocolLib"
+filename = "ProtocolLib.jar"
+method   = "github"
+userdata = { owner = "Mgazul", repo = "ProtocolLib-1", tag = "neoforge", asset = "ProtocolLib.jar" }

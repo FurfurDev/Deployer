@@ -1,0 +1,5 @@
+[[deployer]]
+name     = "Server"
+filename = "server.jar"
+method   = "web"
+userdata = { url = "https://api.mohistmc.com/project/youer/1.21.1/builds/657/download" }

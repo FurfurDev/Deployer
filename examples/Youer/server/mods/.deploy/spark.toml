@@ -1,0 +1,5 @@
+[[deployer]]
+name     = "spark"
+filename = "spark.jar"
+method   = "curseforge"
+userdata = { modid = "361579", fileid = "8275631" }

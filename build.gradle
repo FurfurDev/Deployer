@@ -1,0 +1,199 @@
+import org.gradle.api.attributes.plugin.GradlePluginApiVersion
+import org.gradle.util.GradleVersion
+
+plugins {
+    id 'com.gradle.plugin-publish' version '2.1.1'
+    id 'java-gradle-plugin'
+    id 'maven-publish'
+    id 'java-library'
+    id 'eclipse'
+    id 'groovy'
+    id 'idea'
+}
+
+// We hard coded the version of the gradle wrapper here.
+tasks.named('wrapper', Wrapper).configure { Wrapper wrapperTask ->
+    wrapperTask.distributionType = Wrapper.DistributionType.ALL
+}
+
+// Create an info task that prints out some useful information about the project.
+tasks.register('info') {
+    group = 'reporting'
+    description = 'Prints out some useful information about the project.'
+    doLast {
+        logger.lifecycle("Version: $version")
+        logger.lifecycle("Java:    ${System.getProperty('java.version')}")
+        logger.lifecycle("JVM:     ${System.getProperty('java.vm.version')} (${System.getProperty('java.vendor')})")
+        logger.lifecycle("Arch:    ${System.getProperty('os.arch')}")
+    }
+}
+
+repositories {
+    gradlePluginPortal()
+    mavenCentral()
+    mavenLocal()
+}
+
+// | ===================================================== |
+// | Default gradle project setup                          |
+// | ===================================================== |
+
+// Setup the java toolchain
+java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
+java.withSourcesJar()
+
+['apiElements', 'runtimeElements'].each {
+    configurations.named(it).configure {
+        attributes {
+            attribute(
+                    GradlePluginApiVersion.GRADLE_PLUGIN_API_VERSION_ATTRIBUTE,
+                    objects.named(GradlePluginApiVersion, GradleVersion.current().getVersion())
+            )
+        }
+    }
+}
+
+tasks.withType(ProcessResources).configureEach {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+}
+
+dependencies {
+    // Basic dependencies: Mine Deployer
+    api "org.jetbrains:annotations:${jetbrains_annotations_version}"
+    api "commons-io:commons-io:${commons_io_version}"
+    api "com.electronwill.night-config:json:${night_config_version}"
+    api "com.electronwill.night-config:hocon:${night_config_version}"
+    api "com.electronwill.night-config:toml:${night_config_version}"
+    api "com.electronwill.night-config:yaml:${night_config_version}"
+    api "org.htmlunit:htmlunit:${htmlunit_version}"
+
+    // Basic dependencies: Jetbrains Annotations, JUnit and Mockito for now.
+    api "org.jetbrains:annotations:${jetbrains_annotations_version}"
+    testImplementation "org.junit.jupiter:junit-jupiter:${junit_version}"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junit_version}"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:${junit_version}"
+    testImplementation "org.junit.jupiter:junit-jupiter-params:${junit_version}"
+    testRuntimeOnly    "org.junit.platform:junit-platform-launcher:${junit_version}"
+    testImplementation "org.mockito:mockito-junit-jupiter:${mockito_version}"
+    testImplementation "org.mockito:mockito-core:${mockito_version}"
+}
+
+// Exclude duplicates.
+tasks.withType(Jar).configureEach { jarTask ->
+    jarTask.duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+// Setup the test task to use JUnit 5 and its platform.
+tasks.withType(Test).configureEach { testTask ->
+    testTask.useJUnitPlatform()
+}
+
+// Make groovy incremental and use indy (Should allow for faster compilation, and makes its code more readable)
+tasks.withType(GroovyCompile).configureEach {
+    options.incremental = true
+    groovyOptions.optimizationOptions.indy = true
+}
+
+// noinspection ConfigurationAvoidance Due to how the eclipse plugin creates this task, tasks.named throws
+tasks.findByName('eclipseJdt')?.configure {
+    doFirst {
+        it.getJdt().file.withProperties { properties ->
+            // Eclipse's view of projects treat circular dependencies (which we don't actually have but w/e) as errors by default
+            properties['org.eclipse.jdt.core.circularClasspath'] = 'warning'
+        }
+    }
+}
+
+test {
+    useJUnitPlatform()
+    maxParallelForks = Runtime.runtime.availableProcessors() - 1
+}
+
+// Run task which will run the functional tests.
+tasks.named('test').configure { it ->
+    it.extensions.add('test-source-set', sourceSets.test)
+}
+
+// | ===================================================== |
+// | Default gradle plugin setup                           |
+// | ===================================================== |
+
+dependencies {
+    api gradleApi()
+    testImplementation gradleTestKit()
+}
+
+// Custom source set.
+sourceSets.register('functionalTest') { SourceSet sourceSet ->
+    sourceSet.java.srcDir file('src/functionalTest/java')
+    sourceSet.resources.srcDir file('src/functionalTest/resources')
+    compileClasspath += sourceSets.main.output
+    runtimeClasspath += sourceSets.main.output
+}
+
+gradlePlugin.testSourceSets(sourceSets.functionalTest)
+configurations.functionalTestImplementation.extendsFrom(configurations.testImplementation)
+
+// All dependencies needed to run the functional tests.
+dependencies {
+    functionalTestImplementation gradleTestKit()
+    functionalTestImplementation "org.junit.jupiter:junit-jupiter-api:${project.junit_version}"
+    functionalTestImplementation "org.junit.jupiter:junit-jupiter-engine:${project.junit_version}"
+    functionalTestRuntimeOnly    "org.junit.platform:junit-platform-launcher"
+}
+
+// Configure the plugin metadata, so we can publish it.
+gradlePlugin.website = "https://github.com/FurfurDev/Deployer"
+gradlePlugin.vcsUrl = "https://github.com/FurfurDev/Deployer.git"
+gradlePlugin.plugins {
+    register(rootProject.name.toLowerCase(Locale.ROOT)) {
+        // Setup the plugin id.
+        id = project.group
+
+        // And the implementation class.
+        implementationClass = "${project.group}.DeployerPlugin"
+
+        displayName = "FurfurDev Gradle Deployer Plugin"
+        description = "A plugin for FurfurDev Gradle, providing minecraft deploy functionality."
+        tags = ['minecraft', 'modding', 'furfurmc', 'furfurdev', rootProject.name.toLowerCase(Locale.ROOT)]
+
+        compatibility {
+            features {
+                configurationCache = true
+            }
+        }
+    }
+}
+
+// Run task which will run the functional tests.
+tasks.register('functionalTest', Test) {
+    useJUnitPlatform()
+    group 'verification'
+
+    testClassesDirs = sourceSets.functionalTest.output.classesDirs
+    classpath += sourceSets.functionalTest.runtimeClasspath
+
+    it.extensions.add('test-source-set', sourceSets.functionalTest)
+
+    if (rootProject.getProperties().get("training-wheels.gradle-version") != null)
+        it.systemProperty(
+            "training-wheels.gradle-version",
+            rootProject.getProperties().get("training-wheels.gradle-version")
+        )
+}
+
+// Run functional tests as part of check
+tasks.named('check', Task) {
+    dependsOn tasks.functionalTest
+}
+
+// Setup plugin publishing
+gradlePlugin.automatedPublishing = true
+
+// Handle the idea plugin
+idea { ideaSpec ->
+    ideaSpec.module { ideaModule ->
+        ideaModule.getTestSources().from(sourceSets.functionalTest.java)
+        ideaModule.getTestSources().from(sourceSets.functionalTest.resources)
+    }
+}

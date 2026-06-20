@@ -1,0 +1,5 @@
+[[deployer]]
+name     = "WorldEdit"
+filename = "WorldEdit.jar"
+method   = "github"
+userdata = { owner = "MohistMC", repo = "WorldEdit-1.21.1", tag = "bate", asset = "worldedit-youer-7.3.8-1.jar" }
