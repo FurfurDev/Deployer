@@ -201,39 +201,70 @@ idea { ideaSpec ->
 publishing {
     repositories {
         maven {
-            name = 'localRepo'
-            url = layout.buildDirectory.dir('local-repo').get().asFile.toURI()
+            name = 'mavenLocal'
+            url  = layout.buildDirectory.dir('maven-repo').get().asFile.toURI()
         }
     }
 
     publications {
-        mavenJava(MavenPublication) {
-            from components.java
-
+        // marker
+        withType(MavenPublication).matching { it.name == 'deployerPluginMarkerMaven' }.configureEach {
             pom {
-                name        = "Deployer"
-                description = 'The Gradle plugin for deploying minecraft servers.'
-                url         = gradlePlugin.website
+                name = 'net.furfurmc.gradle.deployer (Gradle Plugin)'
+                description = 'Gradle plugin marker for deploying minecraft servers.'
+                url = gradlePlugin.website
 
                 licenses {
                     license {
-                        name = "BSD 3-Clause License"
-                        url  = "https://opensource.org/license/bsd-3-clause"
+                        name = 'BSD 3-Clause License'
+                        url = 'https://opensource.org/license/bsd-3-clause'
                     }
                 }
 
                 developers {
                     developer {
-                        name            = "ToshiNamura"
-                        email           = 'furfurmcdev@yahoo.com'
-                        organization    = "FurfurDev"
-                        organizationUrl = "https://github.com/FurfurDev"
+                        name = 'ToshiNamura'
+                        email = 'furfurmcdev@yahoo.com'
+                        organization = 'FurfurDev'
+                        organizationUrl = 'https://github.com/FurfurDev'
                     }
                 }
 
                 scm {
-                    connection = "scm:git:git://github.com/FurfurDev/Deployer.git"
-                    url        = "https://github.com/FurfurDev/Deployer/tree/main"
+                    connection = 'scm:git:git://github.com/FurfurDev/Deployer.git'
+                    developerConnection = 'scm:git:ssh://github.com/FurfurDev/Deployer.git'
+                    url = 'https://github.com/FurfurDev/Deployer'
+                }
+            }
+        }
+
+        // main plugin
+        withType(MavenPublication).matching { it.name == 'pluginMaven' }.configureEach {
+            pom {
+                name = 'Deployer'
+                description = 'The Gradle plugin for deploying minecraft servers.'
+                url = gradlePlugin.website
+
+                licenses {
+                    license {
+                        name = 'BSD 3-Clause License'
+                        url = 'https://opensource.org/license/bsd-3-clause'
+                    }
+                }
+
+                developers {
+                    developer {
+                        name = 'ToshiNamura'
+                        email = 'furfurmcdev@yahoo.com'
+                        organization = 'FurfurDev'
+                        organizationUrl = 'https://github.com/FurfurDev'
+                    }
+                }
+
+                scm {
+                    connection = 'scm:git:git://github.com/FurfurDev/Deployer.git'
+                    developerConnection = 'scm:git:ssh://github.com/FurfurDev/Deployer.git'
+                    url = 'https://github.com/FurfurDev/Deployer'
                 }
             }
         }
