@@ -197,3 +197,45 @@ idea { ideaSpec ->
         ideaModule.getTestSources().from(sourceSets.functionalTest.resources)
     }
 }
+
+publishing {
+    repositories {
+        maven {
+            name = 'localRepo'
+            url = layout.buildDirectory.dir('local-repo').get().asFile.toURI()
+        }
+    }
+
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+
+            pom {
+                name        = "Deployer"
+                description = 'The Gradle plugin for deploying minecraft servers.'
+                url         = gradlePlugin.website
+
+                licenses {
+                    license {
+                        name = "BSD 3-Clause License"
+                        url  = "https://opensource.org/license/bsd-3-clause"
+                    }
+                }
+
+                developers {
+                    developer {
+                        name            = "ToshiNamura"
+                        email           = 'furfurmcdev@yahoo.com'
+                        organization    = "FurfurDev"
+                        organizationUrl = "https://github.com/FurfurDev"
+                    }
+                }
+
+                scm {
+                    connection = "scm:git:git://github.com/FurfurDev/Deployer.git"
+                    url        = "https://github.com/FurfurDev/Deployer/tree/main"
+                }
+            }
+        }
+    }
+}
