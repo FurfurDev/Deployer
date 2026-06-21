@@ -2,7 +2,6 @@ import org.gradle.api.attributes.plugin.GradlePluginApiVersion
 import org.gradle.util.GradleVersion
 
 plugins {
-    id 'com.gradle.plugin-publish' version '2.1.1'
     id 'java-gradle-plugin'
     id 'maven-publish'
     id 'java-library'
@@ -169,12 +168,6 @@ gradlePlugin.plugins {
         displayName = "FurfurDev Gradle Deployer Plugin"
         description = "A plugin for FurfurDev Gradle, providing minecraft deploy functionality."
         tags = ['minecraft', 'modding', 'furfurmc', 'furfurdev', rootProject.name.toLowerCase(Locale.ROOT)]
-
-        compatibility {
-            features {
-                configurationCache = true
-            }
-        }
     }
 }
 
