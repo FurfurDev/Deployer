@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.InputStream;
 import java.net.URI;
 import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import org.htmlunit.HttpMethod;
 import org.htmlunit.WebRequest;
 import net.furfurmc.gradle.deployer.common.CacheDocument;
@@ -57,7 +58,7 @@ public class WebDeployer extends AbstractDeployer
             webRequest.setAdditionalHeader("Accept", "application/octet-stream");
             try (InputStream inputStream = webClient.getResponse(webRequest).getContentAsStream())
             {
-                Files.copy(inputStream, deployFile.toPath());
+                Files.copy(inputStream, deployFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
             }
         }
         catch (Exception exception)

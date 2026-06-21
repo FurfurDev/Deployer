@@ -3,6 +3,7 @@ package net.furfurmc.gradle.deployer.deployers;
 import java.io.File;
 import java.io.InputStream;
 import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import net.furfurmc.gradle.deployer.common.CacheDocument;
 import net.furfurmc.gradle.deployer.entities.AbstractEntity;
 import net.furfurmc.gradle.deployer.entities.ModrinthEntity;
@@ -48,7 +49,7 @@ public class ModrinthDeployer extends AbstractDeployer
             var webResponse = webClient.downloadVersionFile(deployEntity.versionId, deployEntity.versionFile);
             try (InputStream inputStream = webResponse.getContentAsStream())
             {
-                Files.copy(inputStream, deployFile.toPath());
+                Files.copy(inputStream, deployFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
             }
         }
         catch (Exception exception)
