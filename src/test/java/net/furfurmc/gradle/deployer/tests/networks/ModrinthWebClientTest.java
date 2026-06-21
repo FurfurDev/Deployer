@@ -10,7 +10,6 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-
 import net.furfurmc.gradle.deployer.networks.ModrinthWebClient;
 
 public class ModrinthWebClientTest
