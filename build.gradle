@@ -55,6 +55,19 @@ java.withSourcesJar()
 
 tasks.withType(ProcessResources).configureEach {
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
+
+    var replaceProperties = [
+            plugin_name:      rootProject.name,
+            plugin_version:   project.version,
+            plugin_group:     project.group,
+            java_version:     java_version,
+            htmlunit_version: htmlunit_version,
+    ]
+    inputs.properties replaceProperties
+
+    filesMatching(['plugin.json']) {
+        expand replaceProperties
+    }
 }
 
 dependencies {
@@ -137,8 +150,8 @@ configurations.functionalTestImplementation.extendsFrom(configurations.testImple
 // All dependencies needed to run the functional tests.
 dependencies {
     functionalTestImplementation gradleTestKit()
-    functionalTestImplementation "org.junit.jupiter:junit-jupiter-api:${project.junit_version}"
-    functionalTestImplementation "org.junit.jupiter:junit-jupiter-engine:${project.junit_version}"
+    functionalTestImplementation "org.junit.jupiter:junit-jupiter-api:${junit_version}"
+    functionalTestImplementation "org.junit.jupiter:junit-jupiter-engine:${junit_version}"
     functionalTestRuntimeOnly    "org.junit.platform:junit-platform-launcher"
 }
 

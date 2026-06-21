@@ -1,0 +1,7 @@
+{
+    "plugin_name":      "${plugin_name}",
+    "plugin_version":   "${plugin_version}",
+    "plugin_group":     "${plugin_group}",
+    "java_version":     "${java_version}",
+    "htmlunit_version": "${htmlunit_version}"
+}
