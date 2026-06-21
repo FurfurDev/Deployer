@@ -22,10 +22,10 @@ import net.furfurmc.gradle.deployer.tasks.DeployTask;
 
 public class DeployerProjectPlugin implements Plugin<Project>
 {
-    private Map<String,   AbstractEntity>   entities;
-    private Map<String,   AbstractAnalyzer> analyzers;
-    private Map<Class<?>, DeployerWebClient>    webClients;
-    private Map<Class<?>, AbstractDeployer> deployers;
+    private Map<String,   AbstractEntity>    entities;
+    private Map<String,   AbstractAnalyzer>  analyzers;
+    private Map<Class<?>, DeployerWebClient> webClients;
+    private Map<Class<?>, AbstractDeployer>  deployers;
 
     public DeployerProjectPlugin()
     {
@@ -140,6 +140,9 @@ public class DeployerProjectPlugin implements Plugin<Project>
         DeployExtension extension = project.getExtensions().create("deploy", DeployExtension.class);
 
         project.getTasks().register("deploy", DeployTask.class, task -> {
+            task.getDeployerProjectPlugin().set(this);
+            task.getProjectDirectory().set(project.getLayout().getProjectDirectory());
+
             task.getIndexName().set(extension.getIndexName());
             task.getCacheDirectory().set(extension.getCacheDirectory());
             task.getWorkDirectory().set(extension.getWorkDirectory());

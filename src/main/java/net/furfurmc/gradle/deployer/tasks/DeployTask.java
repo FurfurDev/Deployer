@@ -1,6 +1,7 @@
 package net.furfurmc.gradle.deployer.tasks;
 
 import org.gradle.api.DefaultTask;
+import org.gradle.api.file.Directory;
 import org.gradle.api.file.DirectoryProperty;
 import org.gradle.api.provider.Property;
 import org.gradle.api.tasks.CacheableTask;
@@ -16,12 +17,20 @@ import net.furfurmc.gradle.deployer.tasks.utils.RegisterUtil;
 @CacheableTask
 public abstract class DeployTask extends DefaultTask
 {
+    private DeployerProjectPlugin deployPlugin;
+    private Directory             projectDirectory;
+    private Directory             buildDirectory;
+
     @TaskAction
     public void deploy()
     {
-        var deployPlugin     = super.getProject().getPlugins().getPlugin(DeployerProjectPlugin.class);
-        var projectDirectory = super.getProject().getLayout().getProjectDirectory();
-        var buildDirectory   = super.getProject().getLayout().getBuildDirectory().getOrElse(projectDirectory.dir("build"));
+        if (!this.getDeployerProjectPlugin().isPresent()) throw new RuntimeException("Fail run DeployTask - not set deployerProjectPlugin");
+        if (!this.getProjectDirectory().isPresent())      throw new RuntimeException("Fail run DeployTask - not set projectDirectory");
+
+        deployPlugin     = this.getDeployerProjectPlugin().get();
+        projectDirectory = this.getProjectDirectory().get();
+        buildDirectory   = projectDirectory.dir("build");
+
         var indexName        = this.getIndexName().getOrElse(DeployerPlugin.DEFAULT_INDEX_NAME);
         var cacheDirectory   = this.getCacheDirectory().getOrElse(buildDirectory.dir(DeployerPlugin.DEFAULT_CACHE_DIRECTORY)).getAsFile();
         var workDirectory    = this.getWorkDirectory().getOrElse(projectDirectory.dir(DeployerPlugin.DEFAULT_WORK_DIRECTORY)).getAsFile();
@@ -50,6 +59,12 @@ public abstract class DeployTask extends DefaultTask
         // to deploy
         deployPlugin.deploy();
     }
+
+    @Internal
+    public abstract Property<DeployerProjectPlugin> getDeployerProjectPlugin();
+
+    @Internal
+    public abstract DirectoryProperty getProjectDirectory();
 
     @Input
     @Optional
