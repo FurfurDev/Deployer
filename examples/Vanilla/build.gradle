@@ -1,5 +1,6 @@
 plugins {
     id 'net.furfurmc.gradle.deployer'
+    id 'java'
 }
 
 def runServerDir = layout.projectDirectory.dir('run')
@@ -9,10 +10,16 @@ deploy {
     deployDirectory = runServerDir
 }
 
+tasks.clean {
+    doLast {
+        runServerDir.asFile.deleteDir()
+    }
+}
+
 tasks.register("runServer", JavaExec) {
     dependsOn("deploy")
-    classpath  = files(runServerDir.file("server.jar").getAsFile())
-    workingDir = runServerDir.getAsFile().toString()
+    classpath  = files(runServerDir.file("server.jar").asFile)
+    workingDir = runServerDir.asFile.toString()
     args       = ["--nogui"]
     standardInput = System.in
 }
