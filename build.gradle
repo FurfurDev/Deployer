@@ -40,6 +40,7 @@ repositories {
 // Setup the java toolchain
 java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
 java.withSourcesJar()
+java.withJavadocJar()
 
 ['apiElements', 'runtimeElements'].each {
     configurations.named(it).configure {
@@ -204,6 +205,10 @@ idea { ideaSpec ->
     }
 }
 
+// | ===================================================== |
+// | Gradle publishing setup                               |
+// | ===================================================== |
+
 publishing {
     repositories {
         maven {
@@ -242,6 +247,8 @@ publishing {
                     url = 'https://github.com/FurfurDev/Deployer'
                 }
             }
+            
+            artifact(tasks.named("javadocJar"))
         }
 
         // main plugin
