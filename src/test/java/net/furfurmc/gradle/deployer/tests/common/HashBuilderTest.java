@@ -11,7 +11,6 @@ import java.security.NoSuchAlgorithmException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-
 import net.furfurmc.gradle.deployer.common.HashBuilder;
 import net.furfurmc.gradle.deployer.tests.tools.FilesTestUtil;
 

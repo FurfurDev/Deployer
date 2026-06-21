@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.File;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-
 import net.furfurmc.gradle.deployer.common.DestinationUtil;
 
 public class DestinationUtilTest

@@ -8,7 +8,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import com.electronwill.nightconfig.core.Config;
-
 import net.furfurmc.gradle.deployer.analyzers.CurseforgeAnalyzer;
 import net.furfurmc.gradle.deployer.deployers.CurseforgeDeployer;
 import net.furfurmc.gradle.deployer.tests.tools.FilesTestUtil;

@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 import com.electronwill.nightconfig.core.Config;
-
 import net.furfurmc.gradle.deployer.analyzers.WebAnalyzer;
 import net.furfurmc.gradle.deployer.tests.tools.FilesTestUtil;
 

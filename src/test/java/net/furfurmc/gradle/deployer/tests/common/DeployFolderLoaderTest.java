@@ -7,7 +7,6 @@ import java.io.IOException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-
 import net.furfurmc.gradle.deployer.DeployerPlugin;
 import net.furfurmc.gradle.deployer.common.DeployFolderLoader;
 import net.furfurmc.gradle.deployer.tests.tools.FilesTestUtil;
