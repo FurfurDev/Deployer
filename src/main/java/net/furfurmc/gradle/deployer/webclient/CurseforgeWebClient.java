@@ -1,4 +1,4 @@
-package net.furfurmc.gradle.deployer.networks;
+package net.furfurmc.gradle.deployer.webclient;
 
 import java.io.IOException;
 import java.net.URI;
@@ -21,13 +21,13 @@ public class CurseforgeWebClient extends DeployerWebClient
     public CurseforgeWebClient()
     {
         this.apiKey = CurseforgeWebClient.DEFAULT_API_KEY;
-        super.getWebClient().addRequestHeader(CurseforgeWebClient.API_KEY_HEADER, apiKey);
+        super.addRequestHeader(CurseforgeWebClient.API_KEY_HEADER, apiKey);
     }
 
     public CurseforgeWebClient(String apiKey)
     {
         this.apiKey = apiKey;
-        super.getWebClient().addRequestHeader(CurseforgeWebClient.API_KEY_HEADER, apiKey);
+        super.addRequestHeader(CurseforgeWebClient.API_KEY_HEADER, apiKey);
     }
 
     public String getApiKey()
@@ -37,8 +37,8 @@ public class CurseforgeWebClient extends DeployerWebClient
 
     public void setApiKey(String apiKey)
     {
-        super.getWebClient().removeRequestHeader(CurseforgeWebClient.API_KEY_HEADER);
-        super.getWebClient().addRequestHeader(CurseforgeWebClient.API_KEY_HEADER, apiKey);
+        super.removeRequestHeader(CurseforgeWebClient.API_KEY_HEADER);
+        super.addRequestHeader(CurseforgeWebClient.API_KEY_HEADER, apiKey);
         this.apiKey = apiKey;
     }
 

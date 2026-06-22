@@ -11,7 +11,7 @@ import net.furfurmc.gradle.deployer.common.CacheDocument;
 import net.furfurmc.gradle.deployer.common.HashBuilder;
 import net.furfurmc.gradle.deployer.entities.AbstractEntity;
 import net.furfurmc.gradle.deployer.entities.WebEntity;
-import net.furfurmc.gradle.deployer.networks.DeployerWebClient;
+import net.furfurmc.gradle.deployer.webclient.DeployerWebClient;
 
 public class WebDeployer extends AbstractDeployer
 {

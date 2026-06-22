@@ -1,4 +1,4 @@
-package net.furfurmc.gradle.deployer.networks;
+package net.furfurmc.gradle.deployer.webclient;
 
 import java.io.IOException;
 import java.net.URI;
@@ -25,7 +25,7 @@ public class GitHubWebClient extends DeployerWebClient
     public GitHubWebClient(String apiKey)
     {
         this.apiKey = apiKey;
-        super.getWebClient().addRequestHeader(GitHubWebClient.API_KEY_HEADER, apiKey);
+        super.addRequestHeader(GitHubWebClient.API_KEY_HEADER, apiKey);
     }
 
     public String getApiKey()
@@ -35,8 +35,8 @@ public class GitHubWebClient extends DeployerWebClient
 
     public void setApiKey(String apiKey)
     {
-        if (this.apiKey != null) super.getWebClient().removeRequestHeader(GitHubWebClient.API_KEY_HEADER);
-        super.getWebClient().addRequestHeader(GitHubWebClient.API_KEY_HEADER, apiKey);
+        if (this.apiKey != null) super.removeRequestHeader(GitHubWebClient.API_KEY_HEADER);
+        super.addRequestHeader(GitHubWebClient.API_KEY_HEADER, apiKey);
         this.apiKey = apiKey;
     }
 

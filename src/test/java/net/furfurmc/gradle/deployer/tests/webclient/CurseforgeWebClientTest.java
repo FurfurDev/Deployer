@@ -1,4 +1,4 @@
-package net.furfurmc.gradle.deployer.tests.networks;
+package net.furfurmc.gradle.deployer.tests.webclient;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -10,7 +10,7 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-import net.furfurmc.gradle.deployer.networks.CurseforgeWebClient;
+import net.furfurmc.gradle.deployer.webclient.CurseforgeWebClient;
 
 public class CurseforgeWebClientTest
 {

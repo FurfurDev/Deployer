@@ -7,7 +7,7 @@ import java.nio.file.StandardCopyOption;
 import net.furfurmc.gradle.deployer.common.CacheDocument;
 import net.furfurmc.gradle.deployer.entities.AbstractEntity;
 import net.furfurmc.gradle.deployer.entities.ModrinthEntity;
-import net.furfurmc.gradle.deployer.networks.ModrinthWebClient;
+import net.furfurmc.gradle.deployer.webclient.ModrinthWebClient;
 
 public class ModrinthDeployer extends AbstractDeployer
 {

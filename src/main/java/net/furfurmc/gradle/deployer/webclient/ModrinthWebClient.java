@@ -1,4 +1,4 @@
-package net.furfurmc.gradle.deployer.networks;
+package net.furfurmc.gradle.deployer.webclient;
 
 import java.io.IOException;
 import java.net.URI;
@@ -25,7 +25,7 @@ public class ModrinthWebClient extends DeployerWebClient
     public ModrinthWebClient(String apiKey)
     {
         this.apiKey = apiKey;
-        super.getWebClient().addRequestHeader(ModrinthWebClient.API_KEY_HEADER, apiKey);
+        super.addRequestHeader(ModrinthWebClient.API_KEY_HEADER, apiKey);
     }
 
     public String getApiKey()
@@ -35,8 +35,8 @@ public class ModrinthWebClient extends DeployerWebClient
 
     public void setApiKey(String apiKey)
     {
-        if (this.apiKey != null) super.getWebClient().removeRequestHeader(ModrinthWebClient.API_KEY_HEADER);
-        super.getWebClient().addRequestHeader(ModrinthWebClient.API_KEY_HEADER, apiKey);
+        if (this.apiKey != null) super.removeRequestHeader(ModrinthWebClient.API_KEY_HEADER);
+        super.addRequestHeader(ModrinthWebClient.API_KEY_HEADER, apiKey);
         this.apiKey = apiKey;
     }
 

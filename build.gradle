@@ -57,15 +57,15 @@ tasks.withType(ProcessResources).configureEach {
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
 
     var replaceProperties = [
-            plugin_name:      rootProject.name,
-            plugin_version:   project.version,
-            plugin_group:     project.group,
+            project_name:      rootProject.name,
+            project_version:   project.version,
+            project_group:     project.group,
             java_version:     java_version,
             htmlunit_version: htmlunit_version,
     ]
     inputs.properties replaceProperties
 
-    filesMatching(['plugin.json']) {
+    filesMatching(['deployer.json']) {
         expand replaceProperties
     }
 }

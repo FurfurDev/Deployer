@@ -1,0 +1,7 @@
+{
+    "project_name":     "${project_name}",
+    "project_version":  "${project_version}",
+    "project_group":    "${project_group}",
+    "java_version":     "${java_version}",
+    "htmlunit_version": "${htmlunit_version}"
+}

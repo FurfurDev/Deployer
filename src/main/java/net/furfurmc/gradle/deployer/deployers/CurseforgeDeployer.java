@@ -7,7 +7,7 @@ import java.nio.file.StandardCopyOption;
 import net.furfurmc.gradle.deployer.common.CacheDocument;
 import net.furfurmc.gradle.deployer.entities.AbstractEntity;
 import net.furfurmc.gradle.deployer.entities.CurseforgeEntity;
-import net.furfurmc.gradle.deployer.networks.CurseforgeWebClient;
+import net.furfurmc.gradle.deployer.webclient.CurseforgeWebClient;
 
 public class CurseforgeDeployer extends AbstractDeployer
 {

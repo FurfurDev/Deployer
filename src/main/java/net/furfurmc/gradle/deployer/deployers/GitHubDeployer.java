@@ -7,7 +7,7 @@ import java.nio.file.StandardCopyOption;
 import net.furfurmc.gradle.deployer.common.CacheDocument;
 import net.furfurmc.gradle.deployer.entities.AbstractEntity;
 import net.furfurmc.gradle.deployer.entities.GitHubEntity;
-import net.furfurmc.gradle.deployer.networks.GitHubWebClient;
+import net.furfurmc.gradle.deployer.webclient.GitHubWebClient;
 
 public class GitHubDeployer extends AbstractDeployer
 {
