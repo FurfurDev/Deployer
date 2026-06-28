@@ -4,8 +4,9 @@ package net.furfurmc.gradle.deployer.extension;
 import org.gradle.api.Action;
 import org.gradle.api.file.DirectoryProperty;
 import org.gradle.api.provider.Property;
-import net.furfurmc.gradle.deployer.entity.EntityContainer;
-import net.furfurmc.gradle.deployer.task.DeployerTaskContainer;
+
+import net.furfurmc.gradle.deployer.container.DeployerTaskContainer;
+import net.furfurmc.gradle.deployer.container.EntityContainer;
 
 public interface DeployerExtension
 {

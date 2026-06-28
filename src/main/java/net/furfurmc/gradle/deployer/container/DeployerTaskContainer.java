@@ -1,12 +1,12 @@
 // DeployerTaskContainer.java : main
-package net.furfurmc.gradle.deployer.task;
+package net.furfurmc.gradle.deployer.container;
 
+import javax.inject.Inject;
 import org.gradle.api.Action;
 import org.gradle.api.ExtensiblePolymorphicDomainObjectContainer;
 import org.gradle.api.model.ObjectFactory;
-import net.furfurmc.gradle.deployer.container.PolymorphicContainer;
-import net.furfurmc.gradle.deployer.task.factory.DeployerTaskFactoryContainer;
-import javax.inject.Inject;
+import net.furfurmc.gradle.deployer.task.DeployerTaskBase;
+import net.furfurmc.gradle.deployer.task.InstallDeployerTask;
 
 public abstract class DeployerTaskContainer extends PolymorphicContainer<DeployerTaskBase>
 {

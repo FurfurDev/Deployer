@@ -1,10 +1,11 @@
 // DeployerTaskFactoryContainer.java : main
-package net.furfurmc.gradle.deployer.task.factory;
+package net.furfurmc.gradle.deployer.container;
 
-import org.gradle.api.model.ObjectFactory;
-import net.furfurmc.gradle.deployer.container.FactoryContainer;
-import net.furfurmc.gradle.deployer.entity.EntityBase;
 import javax.inject.Inject;
+import org.gradle.api.model.ObjectFactory;
+import net.furfurmc.gradle.deployer.entity.EntityBase;
+import net.furfurmc.gradle.deployer.factory.DeployerTaskFactoryBase;
+import net.furfurmc.gradle.deployer.factory.InstallDeployerTaskFactory;
 
 public abstract class DeployerTaskFactoryContainer extends FactoryContainer<EntityBase, DeployerTaskFactoryBase>
 {

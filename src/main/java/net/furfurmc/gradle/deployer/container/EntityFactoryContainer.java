@@ -1,10 +1,11 @@
 // EntityFactoryContainer.java : main
-package net.furfurmc.gradle.deployer.entity.factory;
+package net.furfurmc.gradle.deployer.container;
 
-import org.gradle.api.model.ObjectFactory;
-import net.furfurmc.gradle.deployer.container.FactoryContainer;
-import net.furfurmc.gradle.deployer.entity.EntityBase;
 import javax.inject.Inject;
+import org.gradle.api.model.ObjectFactory;
+import net.furfurmc.gradle.deployer.entity.EntityBase;
+import net.furfurmc.gradle.deployer.factory.EntityFactoryBase;
+import net.furfurmc.gradle.deployer.factory.InstallEntityFactory;
 
 public abstract class EntityFactoryContainer extends FactoryContainer<EntityBase, EntityFactoryBase>
 {

@@ -1,8 +1,7 @@
 // InstallDeployerTaskFactory.java : main
-package net.furfurmc.gradle.deployer.task.factory;
+package net.furfurmc.gradle.deployer.factory;
 
 import javax.inject.Inject;
-
 import org.gradle.api.Project;
 import net.furfurmc.gradle.deployer.DeployerPlugin;
 import net.furfurmc.gradle.deployer.entity.EntityBase;

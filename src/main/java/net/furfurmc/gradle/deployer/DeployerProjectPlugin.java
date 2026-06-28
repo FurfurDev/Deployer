@@ -8,19 +8,19 @@ import org.gradle.api.logging.Logger;
 import org.gradle.api.logging.Logging;
 import org.gradle.api.tasks.TaskProvider;
 import com.electronwill.nightconfig.core.Config;
+import net.furfurmc.gradle.deployer.container.DeployerTaskContainer;
+import net.furfurmc.gradle.deployer.container.DeployerTaskFactoryContainer;
+import net.furfurmc.gradle.deployer.container.EntityContainer;
+import net.furfurmc.gradle.deployer.container.EntityFactoryContainer;
 import net.furfurmc.gradle.deployer.entity.EntityBase;
-import net.furfurmc.gradle.deployer.entity.EntityContainer;
-import net.furfurmc.gradle.deployer.entity.factory.EntityFactoryBase;
-import net.furfurmc.gradle.deployer.entity.factory.EntityFactoryContainer;
 import net.furfurmc.gradle.deployer.extension.DefaultDeployerExtension;
 import net.furfurmc.gradle.deployer.extension.DeployerExtension;
+import net.furfurmc.gradle.deployer.factory.DeployerTaskFactoryBase;
+import net.furfurmc.gradle.deployer.factory.EntityFactoryBase;
 import net.furfurmc.gradle.deployer.index.IndexFolder;
 import net.furfurmc.gradle.deployer.index.IndexFolderLoader;
 import net.furfurmc.gradle.deployer.service.HtmlUnitService;
 import net.furfurmc.gradle.deployer.task.DeployTask;
-import net.furfurmc.gradle.deployer.task.DeployerTaskContainer;
-import net.furfurmc.gradle.deployer.task.factory.DeployerTaskFactoryBase;
-import net.furfurmc.gradle.deployer.task.factory.DeployerTaskFactoryContainer;
 import net.furfurmc.gradle.deployer.util.DestinationUtil;
 
 public class DeployerProjectPlugin implements Plugin<Project>

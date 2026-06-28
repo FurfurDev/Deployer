@@ -1,11 +1,10 @@
 // DeployerTaskFactoryBase.java : main
-package net.furfurmc.gradle.deployer.task.factory;
+package net.furfurmc.gradle.deployer.factory;
 
 import org.gradle.api.Project;
 import org.gradle.api.provider.Property;
 import org.gradle.api.tasks.Input;
 import net.furfurmc.gradle.deployer.entity.EntityBase;
-import net.furfurmc.gradle.deployer.factory.FactoryBase;
 import net.furfurmc.gradle.deployer.task.DeployerTaskBase;
 
 public abstract class DeployerTaskFactoryBase extends FactoryBase<EntityBase>

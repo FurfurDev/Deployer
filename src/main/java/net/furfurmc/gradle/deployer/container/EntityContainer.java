@@ -1,12 +1,12 @@
 // EntityContainer.java : main
-package net.furfurmc.gradle.deployer.entity;
+package net.furfurmc.gradle.deployer.container;
 
+import javax.inject.Inject;
 import org.gradle.api.Action;
 import org.gradle.api.ExtensiblePolymorphicDomainObjectContainer;
 import org.gradle.api.model.ObjectFactory;
-import net.furfurmc.gradle.deployer.container.PolymorphicContainer;
-import net.furfurmc.gradle.deployer.entity.factory.EntityFactoryContainer;
-import javax.inject.Inject;
+import net.furfurmc.gradle.deployer.entity.EntityBase;
+import net.furfurmc.gradle.deployer.entity.InstallEntity;
 
 public abstract class EntityContainer extends PolymorphicContainer<EntityBase>
 {

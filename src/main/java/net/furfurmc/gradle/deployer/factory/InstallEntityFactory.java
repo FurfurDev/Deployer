@@ -1,5 +1,5 @@
 // InstallEntityFactory.java : main
-package net.furfurmc.gradle.deployer.entity.factory;
+package net.furfurmc.gradle.deployer.factory;
 
 import java.io.File;
 import javax.inject.Inject;

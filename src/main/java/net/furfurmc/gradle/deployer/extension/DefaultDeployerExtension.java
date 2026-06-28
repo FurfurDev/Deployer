@@ -4,9 +4,9 @@ package net.furfurmc.gradle.deployer.extension;
 import javax.inject.Inject;
 import org.gradle.api.Action;
 import net.furfurmc.gradle.deployer.DeployerPlugin;
-import net.furfurmc.gradle.deployer.entity.EntityContainer;
+import net.furfurmc.gradle.deployer.container.DeployerTaskContainer;
+import net.furfurmc.gradle.deployer.container.EntityContainer;
 import net.furfurmc.gradle.deployer.instance.DeployerUserAgent;
-import net.furfurmc.gradle.deployer.task.DeployerTaskContainer;
 
 public abstract class DefaultDeployerExtension implements DeployerExtension
 {
