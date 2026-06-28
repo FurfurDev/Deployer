@@ -1,3 +1,4 @@
+// DeployerConfig.java : main
 package net.furfurmc.gradle.deployer.instance;
 
 import com.electronwill.nightconfig.core.UnmodifiableConfig;

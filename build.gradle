@@ -139,8 +139,8 @@ dependencies {
 sourceSets.register('functionalTest') { SourceSet sourceSet ->
     sourceSet.java.srcDir file('src/functionalTest/java')
     sourceSet.resources.srcDir file('src/functionalTest/resources')
-    compileClasspath += sourceSets.main.output
-    runtimeClasspath += sourceSets.main.output
+    compileClasspath += sourceSets.main.output + sourceSets.test.output
+    runtimeClasspath += sourceSets.main.output + sourceSets.test.output
 }
 
 gradlePlugin.testSourceSets(sourceSets.functionalTest)
