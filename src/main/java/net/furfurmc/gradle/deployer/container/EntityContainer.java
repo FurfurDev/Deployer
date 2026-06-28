@@ -7,6 +7,7 @@ import org.gradle.api.ExtensiblePolymorphicDomainObjectContainer;
 import org.gradle.api.model.ObjectFactory;
 import net.furfurmc.gradle.deployer.entity.EntityBase;
 import net.furfurmc.gradle.deployer.entity.InstallEntity;
+import net.furfurmc.gradle.deployer.entity.MakefileEntity;
 
 public abstract class EntityContainer extends PolymorphicContainer<EntityBase>
 {
@@ -18,6 +19,7 @@ public abstract class EntityContainer extends PolymorphicContainer<EntityBase>
         super(EntityBase.class, objects);
         this.factories = factories;
         super.registerBinding(InstallEntity.class, InstallEntity.class);
+        super.registerBinding(MakefileEntity.class, MakefileEntity.class);
     }
 
     public ExtensiblePolymorphicDomainObjectContainer<EntityBase> getEntities()

@@ -7,6 +7,7 @@ import org.gradle.api.ExtensiblePolymorphicDomainObjectContainer;
 import org.gradle.api.model.ObjectFactory;
 import net.furfurmc.gradle.deployer.task.DeployerTaskBase;
 import net.furfurmc.gradle.deployer.task.InstallDeployerTask;
+import net.furfurmc.gradle.deployer.task.MakefileDeployerTask;
 
 public abstract class DeployerTaskContainer extends PolymorphicContainer<DeployerTaskBase>
 {
@@ -18,6 +19,7 @@ public abstract class DeployerTaskContainer extends PolymorphicContainer<Deploye
         super(DeployerTaskBase.class, objects);
         this.factories = factories;
         super.registerBinding(InstallDeployerTask.class, InstallDeployerTask.class);
+        super.registerBinding(MakefileDeployerTask.class, MakefileDeployerTask.class);
     }
 
     public ExtensiblePolymorphicDomainObjectContainer<DeployerTaskBase> getTasks()

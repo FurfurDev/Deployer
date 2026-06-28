@@ -6,6 +6,7 @@ import org.gradle.api.model.ObjectFactory;
 import net.furfurmc.gradle.deployer.entity.EntityBase;
 import net.furfurmc.gradle.deployer.factory.EntityFactoryBase;
 import net.furfurmc.gradle.deployer.factory.InstallEntityFactory;
+import net.furfurmc.gradle.deployer.factory.MakefileEntityFactory;
 
 public abstract class EntityFactoryContainer extends FactoryContainer<EntityBase, EntityFactoryBase>
 {
@@ -15,5 +16,6 @@ public abstract class EntityFactoryContainer extends FactoryContainer<EntityBase
         super(EntityFactoryBase.class, objects);
 
         this.register("InstallEntityFactory", InstallEntityFactory.class);
+        this.register("MakefileEntityFactory", MakefileEntityFactory.class);
     }
 }

@@ -6,6 +6,7 @@ import org.gradle.api.model.ObjectFactory;
 import net.furfurmc.gradle.deployer.entity.EntityBase;
 import net.furfurmc.gradle.deployer.factory.DeployerTaskFactoryBase;
 import net.furfurmc.gradle.deployer.factory.InstallDeployerTaskFactory;
+import net.furfurmc.gradle.deployer.factory.MakefileDeployerTaskFactory;
 
 public abstract class DeployerTaskFactoryContainer extends FactoryContainer<EntityBase, DeployerTaskFactoryBase>
 {
@@ -15,5 +16,6 @@ public abstract class DeployerTaskFactoryContainer extends FactoryContainer<Enti
         super(DeployerTaskFactoryBase.class, objects);
 
         this.register("InstallDeployerTaskFactory", InstallDeployerTaskFactory.class);
+        this.register("MakefileDeployerTaskFactory", MakefileDeployerTaskFactory.class);
     }
 }
