@@ -20,8 +20,6 @@ public abstract class FactoryContainer<T, FT extends FactoryBase<T>> extends Pol
     private void enforceMandatoryProductClass()
     {
         this.getFactories().whenObjectAdded(factory -> {
-            factory.getProductClass().finalizeValueOnRead();
-            factory.getProductClass().disallowChanges();
             if (!factory.getProductClass().isPresent())
             {
                 throw new IllegalStateException(
@@ -29,6 +27,8 @@ public abstract class FactoryContainer<T, FT extends FactoryBase<T>> extends Pol
                     factory.getName() + "' but was not set."
                 );
             }
+            factory.getProductClass().finalizeValueOnRead();
+            factory.getProductClass().disallowChanges();
         });
     }
     

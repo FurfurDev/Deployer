@@ -17,7 +17,7 @@ public class DeployerProjectPluginTest
     void projectRegisterPluginTest()
     {
         var project = ProjectBuilder.builder().withProjectDir(projectDir).build();
-        project.getPlugins().apply("net.furfurmc.gradle.deployer");
+        project.getPlugins().apply(DeployerProjectPlugin.class);
         assertNotNull(project.getPlugins().getPlugin(DeployerProjectPlugin.class));
     }
 }

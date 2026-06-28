@@ -12,7 +12,7 @@ public class DeployerPluginTest
     void projectRegisterPluginTest()
     {
         var project = ProjectBuilder.builder().build();
-        project.getPlugins().apply("net.furfurmc.gradle.deployer");
+        project.getPlugins().apply(DeployerPlugin.class);
         assertNotNull(project.getPlugins().getPlugin(DeployerPlugin.class));
     }
 }
