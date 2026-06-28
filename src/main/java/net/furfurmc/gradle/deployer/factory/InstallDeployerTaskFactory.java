@@ -24,11 +24,11 @@ public abstract class InstallDeployerTaskFactory extends DeployerTaskFactoryBase
         {
             try
             {
-                var installTask = project.getObjects().newInstance(InstallDeployerTask.class, DeployerPlugin.PREFIX_NAME + installEntity.getName());
-                installTask.setGroup(installEntity.getGroup().getOrElse(DeployerPlugin.TASKS_GROUP));
-                installTask.getDeployFile().set(installEntity.getDeployFile());
-                installTask.getOriginFile().set(installEntity.getOriginFile());
-                return installTask;
+                var task = project.getObjects().newInstance(InstallDeployerTask.class, DeployerPlugin.PREFIX_NAME + installEntity.getName());
+                task.setGroup(installEntity.getGroup().getOrElse(DeployerPlugin.TASKS_GROUP));
+                task.getDeployFile().set(installEntity.getDeployFile());
+                task.getOriginFile().set(installEntity.getOriginFile());
+                return task;
             }
             catch (Exception exception)
             {
