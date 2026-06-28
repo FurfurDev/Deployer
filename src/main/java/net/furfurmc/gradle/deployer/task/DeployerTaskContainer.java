@@ -5,15 +5,15 @@ import org.gradle.api.Action;
 import org.gradle.api.ExtensiblePolymorphicDomainObjectContainer;
 import org.gradle.api.model.ObjectFactory;
 import net.furfurmc.gradle.deployer.container.PolymorphicContainer;
-import net.furfurmc.gradle.deployer.entity.factory.EntityFactoryContainer;
+import net.furfurmc.gradle.deployer.task.factory.DeployerTaskFactoryContainer;
 import javax.inject.Inject;
 
 public abstract class DeployerTaskContainer extends PolymorphicContainer<DeployerTaskBase>
 {
-    private final EntityFactoryContainer factories;
+    private final DeployerTaskFactoryContainer factories;
 
     @Inject
-    public DeployerTaskContainer(ObjectFactory objects, EntityFactoryContainer factories)
+    public DeployerTaskContainer(ObjectFactory objects, DeployerTaskFactoryContainer factories)
     {
         super(DeployerTaskBase.class, objects);
         this.factories = factories;
@@ -30,12 +30,12 @@ public abstract class DeployerTaskContainer extends PolymorphicContainer<Deploye
         action.execute(this.getDelegat());
     }
 
-    public EntityFactoryContainer getFactories()
+    public DeployerTaskFactoryContainer getFactories()
     {
         return this.factories;
     }
 
-    public void factories(Action<? super EntityFactoryContainer> action)
+    public void factories(Action<? super DeployerTaskFactoryContainer> action)
     {
         action.execute(factories);
     }
